@@ -117,7 +117,7 @@ python -m pytest tests/ -q
 
 ## 已知帳號（`-k`）怎麼用
 
-給了 `-k bumpyyy_1210` 之後，系統會：
+給了 `-k XXXXXXX` 之後，系統會：
 
 1. **強制注入查詢**：第一輪自動加入 `"handle"`、`site:instagram.com handle` 等高優先查詢。
 2. **預先 seed 候選池**：把該帳號以多平台 canonical URL 放入候選 ID，讓 LLM 可以評分。
