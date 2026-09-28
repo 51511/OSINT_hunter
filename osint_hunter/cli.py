@@ -18,7 +18,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("name", nargs="?", help="目標名稱")
     ap.add_argument("-a", "--anchors", default="", help="錨點資訊：地區、職業、學校…")
     ap.add_argument("-k", "--known", default="", help="已知帳號（handle），逗號分隔")
-    ap.add_argument("-n", "--nicknames", default="", help="暱稱/別名，逗號分隔（如：阿丹,小瑜）")
+    ap.add_argument("-n", "--nicknames", default="", help="暱稱/別名，逗號分隔（如：小瑜）")
     ap.add_argument("-r", "--rounds", type=int, help="最大輪數")
     ap.add_argument("--provider", help="anthropic | openai | ollama | custom")
     ap.add_argument("-m", "--model", help="模型名稱")
