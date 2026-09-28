@@ -1,3 +1,5 @@
+(重要聲明：這東西是無聊用Grok寫的，我嘗試過這東西實戰還滿爛的）
+
 # 🕵️ OSINT Hunter
 
 LLM 驅動的**明網 OSINT 代理**。架構仿 [Robin](https://github.com/apurvsinghgautam/robin)（暗網版），
