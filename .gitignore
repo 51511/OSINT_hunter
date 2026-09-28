@@ -1,0 +1,7 @@
+.env
+investigations/*.json
+investigations/*.md
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
