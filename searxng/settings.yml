@@ -1,0 +1,60 @@
+# SearXNG 設定 — 給 OSINT Hunter 使用
+# 重點：必須啟用 json 格式，否則 API 會回 403。
+use_default_settings: true
+
+general:
+  instance_name: "osint-hunter-searxng"
+  debug: false
+
+server:
+  # 請改成你自己的隨機字串：  openssl rand -hex 32
+  secret_key: "CHANGE_ME_run_openssl_rand_hex_32"
+  limiter: false          # 僅本機使用，關閉限流器（否則程式呼叫會被擋）
+  image_proxy: false
+  bind_address: "0.0.0.0"
+
+search:
+  formats:
+    - html
+    - json                # ← 必須有，OSINT Hunter 靠它取結果
+  safe_search: 0
+  autocomplete: ""
+  default_lang: "zh-TW"
+
+ui:
+  static_use_hash: true
+
+outgoing:
+  request_timeout: 8.0
+  max_request_timeout: 15.0
+  pool_connections: 50
+  pool_maxsize: 10
+  enable_http2: true
+
+# 只啟用對找人有用、且台灣資料較多的引擎。
+# Google 常被限流，因此同時開多個引擎分散風險。
+engines:
+  - name: google
+    engine: google
+    shortcut: go
+    disabled: false
+  - name: bing
+    engine: bing
+    shortcut: bi
+    disabled: false
+  - name: duckduckgo
+    engine: duckduckgo
+    shortcut: ddg
+    disabled: false
+  - name: brave
+    engine: brave
+    shortcut: br
+    disabled: false
+  - name: yahoo
+    engine: yahoo
+    shortcut: yh
+    disabled: false
+  - name: startpage
+    engine: startpage
+    shortcut: sp
+    disabled: false

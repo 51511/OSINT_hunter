@@ -1,0 +1,29 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: osint-hunter-searxng
+    ports:
+      - "127.0.0.1:8080:8080"     # 只綁本機，勿對外開放
+    volumes:
+      - ./searxng:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080/
+    restart: unless-stopped
+    cap_drop: [ALL]
+    cap_add: [CHOWN, SETGID, SETUID]
+    logging:
+      driver: json-file
+      options: { max-size: "1m", max-file: "1" }
+
+  app:
+    build: .
+    container_name: osint-hunter-app
+    ports:
+      - "127.0.0.1:8501:8501"
+    env_file: .env
+    environment:
+      - SEARXNG_URL=http://searxng:8080     # 容器內用服務名稱
+    volumes:
+      - ./investigations:/app/investigations
+    depends_on: [searxng]
+    restart: unless-stopped
